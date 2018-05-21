@@ -77,8 +77,7 @@ if ($isDeployed)
 			$out=RunLinuxCmd -username root -password $password -ip $testVMData.PublicIP -port $testVMData.SSHPort -command "/bin/bash GetXsmbXfsTestStatus.sh" -runAsSudo -ignoreLinuxExitCode
 			LogMsg "Xfs Test Status : $out"
 		}
-		$out=RunLinuxCmd -username root -password $password -ip $testVMData.PublicIP -port $testVMData.SSHPort -command "cp -r xfstests /home/$user/, cp -r xfsprogs /home/$user/, tar -cvzf xfstestfull.tar.gz /home/$user/ " -runAsSudo
-		RemoteCopy -download -downloadFrom $testVMData.PublicIP -files "xfstest.log,Summary.log,Runtime.log, xfstestfull.tar.gz" -downloadTo $LogDir -port $testVMData.SSHPort -username root -password $password
+		RemoteCopy -download -downloadFrom $testVMData.PublicIP -files "xfstest.log,Summary.log,Runtime.log" -downloadTo $LogDir -port $testVMData.SSHPort -username root -password $password
 		LogMsg "Test result : $testResult"
 		$resultSummary +=  CreateResultSummary -testResult $testResult -metaData "" -checkValues "PASS,FAIL,ABORTED" -testName $currentTestData.testName
 	}
