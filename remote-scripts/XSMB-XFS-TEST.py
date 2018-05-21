@@ -55,28 +55,31 @@ def set_variables_OS_dependent():
 	RunLog.info( "set_variables_OS_dependent .. [done]")
 
 install_shell_script = """
-tar -xvf xfstests.tar
+git clone git://git.kernel.org/pub/scm/fs/xfs/xfstests-dev.git
 if [ "$?" != 0 ]
 then
-	echo "FAILED: to extract xfstests.tar "
+	echo "FAILED: to extract xfstests "
 	exit 1
 fi
 
-tar -xvf xfsprogs.tar
+git clone git://git.kernel.org/pub/scm/fs/xfs/xfsprogs-dev.git
 if [ "$?" != 0 ]
 then
-	echo "FAILED: to extract xfsprogs.tar "
+	echo "FAILED: to extract xfsprogs "
 	exit 1
 fi
 echo "xfstests.tar  xfsprogs.tar extracted succesfully!"
 echo "Compiling xfsprogs..."
+mv xfsprogs-dev xfsprogs
 cd xfsprogs
 make
 echo "installing xfsprogs"
-make install-qa
+make install-dev
 
 echo "Compiling xfsprogs..."
-cd ../xfstests
+cd ..
+mv xfstests-dev xfstests
+cd xfstests
 ./configure
 make
 """
@@ -113,5 +116,4 @@ f = open('xfstests/common/rc', 'a')
 f.write(patch_common_rc)
 f.close()
 RunLog.info("xfstests/common/rc updated!")
-Run("mkdir "+azureshare_mount)
 ExecMultiCmdsLocalSudo(["cd xfstests", "./check -cifs generic/001 generic/002  > ../xfstest.log"])
