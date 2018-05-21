@@ -6466,7 +6466,7 @@
 		<test>
 			<testName>XSMB-XFS-TEST</testName>
 			<testScript>XSMB-XFS-TEST.py</testScript>
-			<testScriptps1>XSMB-XFS-TEST.ps1</testScriptps1>
+			<testScriptps1>XSMB-XFS-TEST1.ps1</testScriptps1>
 			<files>.\remote-scripts\azuremodules.py,.\remote-scripts\XSMB-XFS-TEST.py,.\remote-scripts\GetXsmbXfsTestStatus.sh</files>
 			<setupType>xSMBVM</setupType>
 			<TestType></TestType>
