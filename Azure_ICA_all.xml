@@ -6474,7 +6474,7 @@
 			<SupportedExecutionModes>AzureServiceManagement,AzureResourceManager</SupportedExecutionModes>
 			<TestID></TestID>
 			<SubtestValues></SubtestValues>
-			<MountPoint>'/azureshare'</MountPoint>
+			<MountPoint>'/myazureshare'</MountPoint>
 			<AzureShareUrl>'xsmbforcifs.file.core.windows.net/azureshare'</AzureShareUrl>
 			<Priority>P0</Priority>
 		</test>
